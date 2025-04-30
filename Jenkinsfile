@@ -15,7 +15,6 @@ pipeline {
             steps {
                 git 'https://github.com/eqweqr/jenkins'
                 sh 'docker build -t ${REGISTER}/${IMAGE}:${TAG} .'
-		sh 'echo $KEY'
             }
         }
 
@@ -28,7 +27,7 @@ pipeline {
 
         stage('Deploy'){
             steps{
-                writeFile file: "/tmp/id_rsa", text: KEY
+		sh 'cp /tmp/id_rsa ${KEY}'
                 sh 'chmod 600 /tmp/id_rsa'
                 sh """
                 ssh -i /tmp/id_rsa -l ${USER} ${IP} 'docker pull ${REGISTER}/${IMAGE}:${TAG} && docker stop ${CONTAINER} || true  && docker rm ${CONTAINER} || true && docker run --name ${CONTAINER} -d ${REGISTER}/${IMAGE}:${TAG} '
