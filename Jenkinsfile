@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     environment {
-        KEY=credentials('ssh_key') 
+        KEY=credentials('ssh') 
         USER=credentials('remote_user')
         IAMTOKEN=credentials('iamtoken')
         REGISTER=credentials('register')
