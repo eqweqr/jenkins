@@ -6,6 +6,8 @@ pipeline {
     stages {
         stage('Example stage 1') {
             steps {
+		docker build -t hello .
+		docker run -t --rm --name kk hello
 		echo "$MY_CRED"
                 // sh("kubectl --kubeconfig $MY_KUBECONFIG get pods")
             }
