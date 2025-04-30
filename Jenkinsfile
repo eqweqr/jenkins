@@ -29,7 +29,7 @@ pipeline {
 		script {
 			withCredentials([file(credentialsId: 'rsa', variable: 'RSAKEY')]) {
 				sh 'cp ${RSAKEY} /tmp/id_rsa'
-				sh 'chmod 600 /tmp/id_rsa'
+				sh 'chmod 666 /tmp/id_rsa'
 				sh """
 				ssh -i /tmp/id_rsa -l ${USER} ${IP} 'docker pull ${REGISTER}/${IMAGE}:${TAG} && docker stop ${CONTAINER} || true  && docker rm ${CONTAINER} || true && docker run --name ${CONTAINER} -d ${REGISTER}/${IMAGE}:${TAG} '
 				"""
