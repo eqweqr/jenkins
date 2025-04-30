@@ -1,13 +1,11 @@
 pipeline {
     agent any 
     environment {
-        USER=credentials('remote_user')
         IAMTOKEN=credentials('iamtoken')
         REGISTER=credentials('register')
         IMAGE="piper"
         TAG="latest"
         CONTAINER="predprod"
-        IP=credentials('ip')
     }
     stages {
         stage('Build') {
