@@ -26,6 +26,7 @@ pipeline {
             steps{
 		script {
 			withCredentials([file(credentialsId: 'rsa', variable: 'RSAKEY')]) {
+				sh 'echo ${IAMTOKEN} | docker login --username iam --password-stdin cr.yandex'
 				sh 'cp ${RSAKEY} /tmp/id_rsa'
 				sh 'chmod 600 /tmp/id_rsa'
 				sh """
