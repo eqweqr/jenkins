@@ -26,11 +26,10 @@ pipeline {
             steps{
 		script {
 			withCredentials([file(credentialsId: 'rsa', variable: 'RSAKEY')]) {
-				sh 'echo ${IAMTOKEN} | docker login --username iam --password-stdin cr.yandex'
 				sh 'cp ${RSAKEY} /tmp/id_rsa'
 				sh 'chmod 600 /tmp/id_rsa'
 				sh """
-				ssh -o StrictHostKeyChecking=no -i /tmp/id_rsa -l user1 158.160.71.116 'docker pull cr.yandex/crpn54p4a8q7gmhfaov4/${IMAGE}:${TAG} && docker stop ${CONTAINER} || true && docker rm ${CONTAINER} || true && docker run --name ${CONTAINER} -d ${REGISTER}/${IMAGE}:${TAG}'
+				ssh -o StrictHostKeyChecking=no -i /tmp/id_rsa -l user1 158.160.71.116 'echo ${IAMTOKEN} | docker login --username iam --password-stdin cr.yandex && docker pull cr.yandex/crpn54p4a8q7gmhfaov4/${IMAGE}:${TAG} && docker stop ${CONTAINER} || true && docker rm ${CONTAINER} || true && docker run --name ${CONTAINER} -d ${REGISTER}/${IMAGE}:${TAG}'
 
 				"""
 			}
