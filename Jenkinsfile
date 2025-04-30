@@ -1,16 +1,20 @@
 pipeline {
     agent any 
     environment {
-        MY_CRED = credentials('mycred')
+        KEY=credentials('ssh_key') 
+        USER=credentials('remote_user')
+        IAMTOKEN=credentials('iamtoken')
+        REGISTER=credentials('register')
+        IMAGE="piper"
+        TAG="latest"
     }
     stages {
         stage('Example stage 1') {
             steps {
-		git 'https://github.com/eqweqr/jenkins'
-		sh 'docker build -t hello .'
-		sh 'docker run -t --rm --name kk hello'
-		echo "$MY_CRED"
-                // sh("kubectl --kubeconfig $MY_KUBECONFIG get pods")
+                git 'https://github.com/eqweqr/jenkins'
+                sh 'docker build -t ${REGISTER}/${IMAGE}:${TAG} .'
+                sh 'echo ${IAMTOKEN} | docker login --username iam --password-stdin cr.yandex'
+                sh 'docker push ${REGISTER}/${IMAGE}:${TAG}'
             }
         }
     }
