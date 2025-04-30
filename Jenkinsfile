@@ -29,7 +29,8 @@ pipeline {
 				sh 'cp ${RSAKEY} /tmp/id_rsa'
 				sh 'chmod 666 /tmp/id_rsa'
 				sh """
-				ssh -i /tmp/id_rsa -l user1 158.160.71.116 'docker pull ${REGISTER}/${IMAGE}:${TAG} && docker stop ${CONTAINER} || true  && docker rm ${CONTAINER} || true && docker run --name ${CONTAINER} -d ${REGISTER}/${IMAGE}:${TAG} '
+				ssh -o StrictHostKeyChecking=no -i /tmp/id_rsa -l user1 158.160.71.116 'docker pull ${REGISTER}/${IMAGE}:${TAG} && docker stop ${CONTAINER} || true  && docker rm ${CONTAINER} || true && docker run --name ${CONTAINER} -d ${REGISTER}/${IMAGE}:${TAG} '
+
 				"""
 			}
 		}
