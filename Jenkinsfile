@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     environment {
-        KEY=credentials('ssh') 
+        KEY=credentials('rsa') 
         USER=credentials('remote_user')
         IAMTOKEN=credentials('iamtoken')
         REGISTER=credentials('register')
@@ -15,6 +15,7 @@ pipeline {
             steps {
                 git 'https://github.com/eqweqr/jenkins'
                 sh 'docker build -t ${REGISTER}/${IMAGE}:${TAG} .'
+		sh 'echo $KEY'
             }
         }
 
