@@ -33,5 +33,9 @@ pipeline {
 		}
 	}
     }
+    stage('CleanUp'){
+        sh ''
+
+    }
 }
 }
