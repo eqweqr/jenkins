@@ -38,10 +38,10 @@ pipeline {
 		}
 	}
     }
-//	stage('Cleanup'){
-//		steps{
-//		sh './test.sh ${IAMTOKEN} ${REGISTERID} ${params.EXPIRED_DAYS} ${params.MAX_SIZE}' 	
-//		}
-//}
+	stage('Cleanup'){
+		steps{
+		sh "./test.sh ${IAMTOKEN} ${REGISTERID} ${params.EXPIRED_DAYS} ${params.MAX_SIZE}"
+		}
+}
 }
 }
