@@ -6,7 +6,7 @@ pipeline {
         IMAGE="piper"
         TAG="latest"
         CONTAINER="predprod"
-        REMOTE_IP=credentails('slave_ip')
+        REMOTE_IP=credentials('slave_ip')
     }
     stages {
         stage('Build') {
