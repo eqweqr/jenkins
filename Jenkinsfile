@@ -28,7 +28,7 @@ pipeline {
             steps{
                 sshagent(credentials: ['id_rsa']) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no -l user1 ${REMOTE_IP}'ls /tmp' 
+                        ssh -o StrictHostKeyChecking=no -l user1 ${REMOTE_IP} 'ls /tmp' 
                     """
                         // 'echo ${IAMTOKEN} | docker login --username iam --password-stdin cr.yandex && docker pull cr.yandex/crpn54p4a8q7gmhfaov4/${IMAGE}:${TAG} && docker stop ${CONTAINER} || true && docker rm ${CONTAINER} || true && docker run --name ${CONTAINER} -d ${REGISTER}/${IMAGE}:${TAG}'
                 // """
