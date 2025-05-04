@@ -6,7 +6,7 @@ pipeline {
         IMAGE="piper"
         TAG="latest"
         CONTAINER="predprod"
-	REMOTE_IP=credentails('slave_ip')
+        REMOTE_IP=credentails('slave_ip')
     }
     stages {
         stage('Build') {
@@ -20,6 +20,7 @@ pipeline {
             steps{
                 sh 'echo ${IAMTOKEN} | docker login --username iam --password-stdin cr.yandex'
                 sh 'docker push ${REGISTER}/${IMAGE}:${TAG}'
+                sh 'echo reached'
             }
         }
 
