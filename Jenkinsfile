@@ -25,7 +25,7 @@ pipeline {
             steps{
                 sh 'echo ${IAMTOKEN} | docker login --username iam --password-stdin cr.yandex'
                 sh 'docker push ${REGISTER}/${IMAGE}:${TAG}'
-		sh 'docker rmi  ${REGISTER}/${IMAGE}:${TAG}'
+//		sh 'docker rmi  ${REGISTER}/${IMAGE}:${TAG}'
             }
         }
 
