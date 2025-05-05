@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 TOKEN=$1
 REGID=$2
 MAXDAYS=$3
