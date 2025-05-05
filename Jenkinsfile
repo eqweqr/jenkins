@@ -4,6 +4,11 @@ pipeline {
 		string(name: 'EXPIRED_DAYS', defaultValue: '7', description: 'max time for image')
 		string(name: 'MAX_SIZE', defaultValue: '1000', description: 'max commulitive size for iamges in registory')
 	}
+
+    triggers {
+        githubPush() // Запускать при push в GitHub
+    }
+
     environment {
         IAMTOKEN=credentials('iamtoken')
         REGISTER=credentials('register')
