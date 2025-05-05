@@ -1,2 +1,2 @@
 FROM alpine:latest
-CMD ["echo", "hello playdev"]
+CMD ["echo", "hello playsdev"]

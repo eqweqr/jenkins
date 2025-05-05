@@ -19,6 +19,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'docker build -t ${REGISTER}/${IMAGE}:${TAG} .'
+//		sh 'if[ "$(docker image ls)"];then fi'
             }
         }
 
