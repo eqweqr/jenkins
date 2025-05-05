@@ -5,9 +5,6 @@ pipeline {
 		string(name: 'MAX_SIZE', defaultValue: '1000', description: 'max commulitive size for iamges in registory')
 	}
 
-    triggers {
-        githubPush() // Запускать при push в GitHub
-    }
 
     environment {
         IAMTOKEN=credentials('iamtoken')
