@@ -18,7 +18,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // git 'https://github.com/eqweqr/jenkins'
                 sh 'docker build -t ${REGISTER}/${IMAGE}:${TAG} .'
             }
         }
